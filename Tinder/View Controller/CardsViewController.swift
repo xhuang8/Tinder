@@ -14,6 +14,7 @@ class CardsViewController: UIViewController {
     var divisor: CGFloat!
     
     @IBOutlet weak var cardImageView: UIImageView!
+    var fadeTransition: FadeTransition!
     
     
     override func viewDidLoad() {
@@ -45,10 +46,12 @@ class CardsViewController: UIViewController {
         }
         
         if sender.state == .began {
-            print("Started pan")
+            print("Pan begin")
         } else if sender.state == .changed {
+            print("Pan changing")
             
         } else if sender.state == .ended {
+            print("end pan")
             if imageView.center.x < cardInitialCenter.x - 50 {
                 //animate to the right
                 UIView.animate(withDuration: 0.3, animations: {
@@ -67,7 +70,19 @@ class CardsViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let dest = segue.destination as? ProfileViewController {
+            dest.modalPresentationStyle = UIModalPresentationStyle.custom
+            fadeTransition = FadeTransition()
+            dest.transitioningDelegate = fadeTransition
+            fadeTransition.duration = 1.0
+            dest.profileImageViewHolder = cardImageView.image
+        }
+    }
     
     
-    
+    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "ProfileModal", sender: nil)
+    }
 }

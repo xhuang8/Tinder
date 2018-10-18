@@ -17,29 +17,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav_bar" translatesAutoresizingMaskIntoConstraints="NO" id="huF-bD-Mkt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_bar" translatesAutoresizingMaskIntoConstraints="NO" id="huF-bD-Mkt">
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="Ldc-hJ-eon">
-                                <rect key="frame" x="36" y="150" width="343" height="328"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ryan" translatesAutoresizingMaskIntoConstraints="NO" id="Ldc-hJ-eon">
+                                <rect key="frame" x="36" y="159" width="342" height="328"/>
                                 <color key="backgroundColor" red="0.30562567710876465" green="0.92497003078460693" blue="0.19517028331756592" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="328" id="ice-IK-WPt"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="4Ke-E5-kbb" appends="YES" id="n10-Ji-SXY"/>
+                                    <outletCollection property="gestureRecognizers" destination="AMt-X8-MkX" appends="YES" id="j9n-jk-Txw"/>
                                 </connections>
                             </imageView>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="action_buttons" translatesAutoresizingMaskIntoConstraints="NO" id="nNm-Jc-RTF">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="action_buttons" translatesAutoresizingMaskIntoConstraints="NO" id="nNm-Jc-RTF">
                                 <rect key="frame" x="47" y="530" width="320" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Ldc-hJ-eon" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="FdO-c4-vzu"/>
+                            <constraint firstItem="Ldc-hJ-eon" firstAttribute="centerX" secondItem="huF-bD-Mkt" secondAttribute="centerX" id="HC3-Cw-o8B"/>
+                            <constraint firstItem="huF-bD-Mkt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Je6-Jh-kKa"/>
+                            <constraint firstItem="Ldc-hJ-eon" firstAttribute="top" secondItem="huF-bD-Mkt" secondAttribute="bottom" constant="50" id="NBG-mI-uhQ"/>
+                            <constraint firstItem="Ldc-hJ-eon" firstAttribute="centerX" secondItem="nNm-Jc-RTF" secondAttribute="centerX" id="NXy-t8-yEm"/>
+                            <constraint firstItem="nNm-Jc-RTF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ygr-2s-uuK"/>
+                            <constraint firstItem="huF-bD-Mkt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="feb-ch-HIl"/>
+                            <constraint firstItem="huF-bD-Mkt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="smR-AC-I28"/>
+                            <constraint firstItem="nNm-Jc-RTF" firstAttribute="top" secondItem="Ldc-hJ-eon" secondAttribute="bottom" constant="43" id="yTk-Wn-1va"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="cardImageView" destination="Ldc-hJ-eon" id="66p-Zz-6nu"/>
+                        <segue destination="OWa-nU-noT" kind="presentation" identifier="ProfileModal" id="UQr-sa-WBg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -48,13 +62,58 @@
                         <action selector="didPan:" destination="BYZ-38-t0r" id="bDH-PH-gI1"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="AMt-X8-MkX">
+                    <connections>
+                        <action selector="didTap:" destination="BYZ-38-t0r" id="PG2-8l-KVr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="53.623188405797109" y="27.455357142857142"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="pSu-Od-Cfb">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="OWa-nU-noT" customClass="ProfileViewController" customModule="Tinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eSf-X9-w1m">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="nav_bar2" translatesAutoresizingMaskIntoConstraints="NO" id="Ck2-iX-ZGs">
+                                <rect key="frame" x="0.0" y="14" width="414" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xoi-Jn-v8M">
+                                <rect key="frame" x="36" y="154" width="342" height="333"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Biw-99-ykN">
+                                <rect key="frame" x="3" y="58" width="70" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButton:" destination="OWa-nU-noT" eventType="touchUpInside" id="fnh-wj-jIw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="f7M-dM-TUM"/>
+                    </view>
+                    <connections>
+                        <outlet property="profileImageView" destination="Xoi-Jn-v8M" id="Dc6-mV-TXA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H1p-1H-hXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="26.785714285714285"/>
         </scene>
     </scenes>
     <resources>
         <image name="action_buttons" width="320" height="108"/>
         <image name="nav_bar" width="320" height="65"/>
+        <image name="nav_bar2" width="320" height="65"/>
         <image name="ryan" width="449" height="514"/>
     </resources>
 </document>
